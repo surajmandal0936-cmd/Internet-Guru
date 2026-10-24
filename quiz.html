@@ -1,0 +1,318 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internet Guru - Quiz</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f7ff;
+            margin: 0;
+            color: #222;
+        }
+
+        header {
+            background: #0756a5;
+            color: white;
+            text-align: center;
+            padding: 22px;
+        }
+
+        nav {
+            background: #063b70;
+            padding: 12px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 12px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 650px;
+            background: white;
+            margin: 30px auto;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px #cccccc;
+        }
+
+        .option {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #bbb;
+            border-radius: 7px;
+            background: #f8fbff;
+            text-align: left;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .option:hover {
+            background: #dceeff;
+        }
+
+        .correct {
+            background: #b8f5c5;
+        }
+
+        .wrong {
+            background: #ffcaca;
+        }
+
+        button.action {
+            background: #0756a5;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            margin-top: 12px;
+        }
+
+        #message {
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        footer {
+            background: #063b70;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Internet Guru</h1>
+    <p>Learn Internet Basics Easily</p>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="quiz.html">Quiz</a>
+</nav>
+
+<div class="container">
+    <h2>Internet Basics Quiz</h2>
+    <p>Test your knowledge and learn something new!</p>
+
+    <p id="progress"></p>
+    <h3 id="question"></h3>
+    <div id="options"></div>
+    <p id="message" aria-live="polite"></p>
+
+    <button class="action" id="nextBtn" onclick="nextQuestion()" hidden>
+        Next Question
+    </button>
+
+    <div id="result" hidden>
+        <h2>Quiz Completed!</h2>
+        <h3 id="score"></h3>
+        <p id="remark"></p>
+        <button class="action" onclick="restartQuiz()">Try Again</button>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Internet Guru | Digital Literacy Project</p>
+</footer>
+
+<script>
+const questions = [
+    {
+        q: "1. What is the Internet?",
+        options: ["A global network", "A keyboard", "A printer", "A calculator"],
+        answer: 0
+    },
+    {
+        q: "2. Which app can open websites?",
+        options: ["Calculator", "Google Chrome", "Camera", "Gallery"],
+        answer: 1
+    },
+    {
+        q: "3. What is an email used for?",
+        options: ["Sending electronic messages", "Cooking food", "Printing money", "Taking photos"],
+        answer: 0
+    },
+    {
+        q: "4. Which is a search engine?",
+        options: ["Google", "Paint", "Notepad", "Bluetooth"],
+        answer: 0
+    },
+    {
+        q: "5. What does Wi-Fi help us do?",
+        options: ["Connect to a network wirelessly", "Charge a phone", "Print photos only", "Increase screen size"],
+        answer: 0
+    },
+    {
+        q: "6. Which is a strong password?",
+        options: ["123456", "password", "Ravi123", "Mango@72Tree!"],
+        answer: 3
+    },
+    {
+        q: "7. What should you do with your OTP?",
+        options: ["Share it with everyone", "Keep it secret", "Post it online", "Send it to strangers"],
+        answer: 1
+    },
+    {
+        q: "8. What should you do with a suspicious link?",
+        options: ["Click it quickly", "Forward it to everyone", "Avoid clicking it", "Enter your password"],
+        answer: 2
+    },
+    {
+        q: "9. What is a website?",
+        options: ["A collection of web pages", "A computer cable", "A battery", "A keyboard key"],
+        answer: 0
+    },
+    {
+        q: "10. What does URL mean in everyday use?",
+        options: ["The address of a web page", "A type of phone", "A password", "A video game"],
+        answer: 0
+    },
+    {
+        q: "11. What is an online video call used for?",
+        options: ["Talking face-to-face over the Internet", "Washing clothes", "Charging a phone", "Printing documents"],
+        answer: 0
+    },
+    {
+        q: "12. What should you check before an online payment?",
+        options: ["The recipient and amount", "Only the phone colour", "The wallpaper", "The ringtone"],
+        answer: 0
+    },
+    {
+        q: "13. What is phishing?",
+        options: ["A trick to steal personal information", "A web browser", "A video call", "A search engine"],
+        answer: 0
+    },
+    {
+        q: "14. Which information should you avoid sharing publicly?",
+        options: ["Your OTP and passwords", "A public weather report", "A general study tip", "A public news article"],
+        answer: 0
+    },
+    {
+        q: "15. What should you do if you see an unfamiliar payment request?",
+        options: ["Pay immediately", "Verify it before paying", "Share your OTP", "Ignore all safety checks"],
+        answer: 1
+    }
+];
+
+let current = 0;
+let score = 0;
+let answered = false;
+
+function loadQuestion() {
+    answered = false;
+
+    document.getElementById("result").hidden = true;
+    document.getElementById("question").hidden = false;
+    document.getElementById("options").hidden = false;
+    document.getElementById("message").textContent = "";
+    document.getElementById("nextBtn").hidden = true;
+
+    document.getElementById("progress").textContent =
+        "Question " + (current + 1) + " of " + questions.length;
+
+    document.getElementById("question").textContent =
+        questions[current].q;
+
+    const optionsDiv = document.getElementById("options");
+    optionsDiv.innerHTML = "";
+
+    questions[current].options.forEach(function(option, index) {
+        const btn = document.createElement("button");
+        btn.className = "option";
+        btn.textContent = option;
+        btn.type = "button";
+        btn.onclick = function() {
+            checkAnswer(index, btn);
+        };
+        optionsDiv.appendChild(btn);
+    });
+}
+
+function checkAnswer(index, clickedButton) {
+    if (answered) return;
+    answered = true;
+
+    const correct = questions[current].answer;
+    const buttons = document.querySelectorAll(".option");
+
+    buttons.forEach(function(btn, i) {
+        btn.disabled = true;
+        if (i === correct) btn.classList.add("correct");
+    });
+
+    if (index === correct) {
+        score++;
+        document.getElementById("message").textContent =
+            "Correct! Well done.";
+    } else {
+        clickedButton.classList.add("wrong");
+        document.getElementById("message").textContent =
+            "Incorrect. The green option shows the correct answer.";
+    }
+
+    document.getElementById("nextBtn").hidden = false;
+    document.getElementById("nextBtn").textContent =
+        current === questions.length - 1 ? "Show Result" : "Next Question";
+}
+
+function nextQuestion() {
+    if (!answered) return;
+
+    current++;
+
+    if (current < questions.length) {
+        loadQuestion();
+    } else {
+        showResult();
+    }
+}
+
+function showResult() {
+    document.getElementById("question").hidden = true;
+    document.getElementById("options").hidden = true;
+    document.getElementById("progress").textContent = "Quiz finished";
+    document.getElementById("message").textContent = "";
+    document.getElementById("nextBtn").hidden = true;
+    document.getElementById("result").hidden = false;
+
+    document.getElementById("score").textContent =
+        "Your score: " + score + " / " + questions.length;
+
+    let remark;
+
+    if (score >= 12) {
+        remark = "Excellent! You understand Internet basics very well.";
+    } else if (score >= 8) {
+        remark = "Good job! Keep practising to improve.";
+    } else {
+        remark = "Keep learning! Review the lessons and try again.";
+    }
+
+    document.getElementById("remark").textContent = remark;
+}
+
+function restartQuiz() {
+    current = 0;
+    score = 0;
+    loadQuestion();
+}
+
+loadQuestion();
+</script>
+
+</body>
+  </html>
