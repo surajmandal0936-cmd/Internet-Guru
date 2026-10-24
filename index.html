@@ -1,0 +1,356 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internet Guru</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f8ff;
+            color: #263238;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #155eef;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 32px;
+        }
+
+        nav {
+            background-color: #102a56;
+            padding: 12px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 10px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #ffd166;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #dbeafe, #d1fae5);
+        }
+
+        .hero h2 {
+            color: #155eef;
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #155eef;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 6px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #102a56;
+        }
+
+        section {
+            padding: 40px 20px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        section h2 {
+            text-align: center;
+            color: #155eef;
+            margin-bottom: 25px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px #00000012;
+        }
+
+        .card h3 {
+            color: #102a56;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            margin-bottom: 12px;
+        }
+
+        .safety {
+            background-color: #e0f2fe;
+            max-width: none;
+        }
+
+        .safety-content {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        #quiz {
+            text-align: center;
+        }
+
+        #quiz button {
+            margin: 8px;
+        }
+
+        #result {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: #102a56;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 26px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 5px;
+            }
+
+            .hero h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>🌐 Internet Guru</h1>
+        <p>Learn. Connect. Stay Safe.</p>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#lessons">Lessons</a>
+        <a href="#safety">Online Safety</a>
+        <a href="#quiz">Quiz</a>
+    </nav>
+
+    <div class="hero" id="home">
+        <h2>Welcome to Internet Guru!</h2>
+        <p>Learn Internet Basics in a Simple and Easy Way.</p>
+        <p>
+            Helping first-generation learners develop
+            digital skills for everyday life.
+        </p>
+        <a href="#lessons" class="btn">Start Learning</a>
+    </div>
+
+    <section id="about">
+        <h2>About Our Project</h2>
+        <p>
+            Internet Guru is an educational website created for
+            the Community Engagement Project (CEP), titled
+            "Teaching Internet Basics to First-Generation Learners".
+            It helps beginners learn how to use the internet,
+            search for information, send emails, and stay safe online.
+        </p>
+    </section>
+
+    <section id="lessons">
+        <h2>Learn Internet Basics</h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>🌍 What is the Internet?</h3>
+                <p>
+                    The internet connects computers and mobile
+                    devices around the world. It helps us share
+                    information and communicate.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>🔎 Searching Information</h3>
+                <p>
+                    Search engines help us find information.
+                    Type your question or keywords into a search
+                    engine and review the results.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>🌐 Websites and Browsers</h3>
+                <p>
+                    A browser is an application used to open
+                    websites. Examples include Google Chrome,
+                    Firefox, Safari, and Microsoft Edge.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>✉️ Email Basics</h3>
+                <p>
+                    Email allows us to send and receive messages,
+                    documents, photos, and other files online.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>📱 Online Services</h3>
+                <p>
+                    The internet helps us access educational
+                    resources, government services, online forms,
+                    and digital communication tools.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>💻 Digital Learning</h3>
+                <p>
+                    Students can use the internet to attend
+                    online classes, watch educational videos,
+                    and learn new skills.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="safety" id="safety">
+        <div class="safety-content">
+            <h2>Online Safety Tips</h2>
+
+            <div class="cards">
+
+                <div class="card">
+                    <h3>🔐 Strong Passwords</h3>
+                    <p>
+                        Create strong, unique passwords and
+                        never share them with strangers.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>🔢 Protect Your OTP</h3>
+                    <p>
+                        Never share your OTP, PIN, or banking
+                        password with anyone.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>⚠️ Avoid Fake Links</h3>
+                    <p>
+                        Do not click suspicious links or trust
+                        messages promising unexpected prizes.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>💳 Safe Digital Payments</h3>
+                    <p>
+                        Check the receiver and amount before
+                        making a payment. Never reveal your UPI PIN.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="quiz">
+        <h2>Test Your Knowledge</h2>
+
+        <div class="card">
+            <h3>What is a web browser used for?</h3>
+
+            <button class="btn" onclick="checkAnswer('wrong')">
+                Playing music only
+            </button>
+
+            <button class="btn" onclick="checkAnswer('correct')">
+                Opening websites
+            </button>
+
+            <button class="btn" onclick="checkAnswer('wrong')">
+                Charging a phone
+            </button>
+
+            <p id="result" aria-live="polite"></p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Our Mission</h2>
+        <p style="text-align:center;">
+            Our mission is to make digital education accessible
+            to everyone and help first-generation learners use
+            the internet confidently, responsibly, and safely.
+        </p>
+    </section>
+
+    <footer>
+        <p>© 2026 Internet Guru | Community Engagement Project</p>
+        <p>Learn. Connect. Stay Safe.</p>
+    </footer>
+
+    <script>
+        function checkAnswer(answer) {
+            const result = document.getElementById("result");
+
+            if (answer === "correct") {
+                result.textContent =
+                    "Correct! A browser is used to open websites.";
+                result.style.color = "green";
+            } else {
+                result.textContent =
+                    "Incorrect. Try again!";
+                result.style.color = "red";
+            }
+        }
+    </script>
+
+</body>
+  </html>
